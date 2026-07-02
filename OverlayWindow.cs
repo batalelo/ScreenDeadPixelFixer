@@ -21,6 +21,7 @@ namespace ScreenDeadPixelFixer
             Background = Brushes.Transparent;
             Topmost = true;
             ShowInTaskbar = false;
+            ShowActivated = false;
             WindowStartupLocation = WindowStartupLocation.Manual;
 
             Grid grid = new Grid();
@@ -66,7 +67,7 @@ namespace ScreenDeadPixelFixer
             NativeMethods.SetWindowLongPtr(
                 hwnd, 
                 NativeMethods.GWL_EXSTYLE, 
-                new IntPtr(extendedStyle.ToInt64() | NativeMethods.WS_EX_TRANSPARENT | NativeMethods.WS_EX_LAYERED)
+                new IntPtr(extendedStyle.ToInt64() | NativeMethods.WS_EX_TRANSPARENT | NativeMethods.WS_EX_LAYERED | NativeMethods.WS_EX_NOACTIVATE)
             );
         }
 
