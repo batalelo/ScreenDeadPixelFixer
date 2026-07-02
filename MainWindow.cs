@@ -7,11 +7,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
 
-namespace ScreenPatch
+namespace ScreenDeadPixelFixer
 {
     public class MainWindow : Window
     {
-        private readonly ScreenPatchEngine _engine;
+        private readonly ScreenDeadPixelFixerEngine _engine;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isShuttingDown = false;
         
@@ -236,7 +236,7 @@ namespace ScreenPatch
             Content = outerBorder;
 
             // Instantiate Engine
-            _engine = new ScreenPatchEngine(this);
+            _engine = new ScreenDeadPixelFixerEngine(this);
 
             // Setup Tray Icon System
             SetupTrayIcon();

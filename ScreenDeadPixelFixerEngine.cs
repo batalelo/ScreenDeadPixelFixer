@@ -10,9 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace ScreenPatch
+namespace ScreenDeadPixelFixer
 {
-    public class ScreenPatchEngine
+    public class ScreenDeadPixelFixerEngine
     {
         private readonly DispatcherTimer _timer;
         private readonly OverlayWindow _overlayWindow;
@@ -38,7 +38,7 @@ namespace ScreenPatch
             get { return _timer.IsEnabled; } 
         }
 
-        public ScreenPatchEngine(MainWindow mainWindow)
+        public ScreenDeadPixelFixerEngine(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
             _overlayWindow = new OverlayWindow();

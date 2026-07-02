@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace ScreenPatch
+namespace ScreenDeadPixelFixer
 {
     public class SelectionWindow : Window
     {

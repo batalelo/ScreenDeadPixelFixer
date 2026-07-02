@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace ScreenPatch
+namespace ScreenDeadPixelFixer
 {
     internal static class NativeMethods
     {

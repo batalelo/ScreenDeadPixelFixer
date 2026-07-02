@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace ScreenPatch
+namespace ScreenDeadPixelFixer
 {
     public class App : Application
     {
