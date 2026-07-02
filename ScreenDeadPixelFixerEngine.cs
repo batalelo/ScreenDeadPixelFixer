@@ -2,11 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -23,15 +21,6 @@ namespace ScreenDeadPixelFixer
         public int DeadZoneY { get; set; }
         public int DeadZoneWidth { get; set; }
         public int DeadZoneHeight { get; set; }
-        public int OffsetX { get; set; }
-        public int OffsetY { get; set; }
-        
-        private double _magnification = 1.0;
-        public double Magnification 
-        { 
-            get { return _magnification; } 
-            set { _magnification = value; } 
-        }
 
         public bool IsRunning 
         { 
