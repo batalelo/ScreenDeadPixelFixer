@@ -60,7 +60,7 @@ Upload the compiled `ScreenDeadPixelFixer.exe` to [VirusTotal](https://www.virus
 - `OverlayWindow.cs`: Click-through circular overlay implemented entirely in C#.
 - `SelectionWindow.cs`: Transparent full-screen region selector in pure C#.
 - `NativeMethods.cs`: Win32 integration P/Invokes.
-- `ScreenPatchEngine.cs`: Core background polling and capture loop.
+- `ScreenDeadPixelFixerEngine.cs`: Core background polling and capture loop.
 
 ---
 
