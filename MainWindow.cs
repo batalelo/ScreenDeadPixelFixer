@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,8 +19,6 @@ namespace ScreenDeadPixelFixer
         private int _zoneY = 100;
         private int _zoneWidth = 150;
         private int _zoneHeight = 150;
-        private int _offsetX = 100;
-        private int _offsetY = 0;
         
         private Button BtnToggle;
         private CheckBox ChkStartup;
@@ -363,8 +360,6 @@ namespace ScreenDeadPixelFixer
             _engine.DeadZoneY = _zoneY;
             _engine.DeadZoneWidth = _zoneWidth;
             _engine.DeadZoneHeight = _zoneHeight;
-            _engine.OffsetX = _offsetX;
-            _engine.OffsetY = _offsetY;
             return true;
         }
 
@@ -412,8 +407,8 @@ namespace ScreenDeadPixelFixer
 
         private string GetConfigPath()
         {
-            string appDir = System.AppDomain.CurrentDomain.BaseDirectory;
-            return System.IO.Path.Combine(appDir, "ScreenDeadPixelFixerSettings.txt");
+            string appDir = AppDomain.CurrentDomain.BaseDirectory;
+            return Path.Combine(appDir, "ScreenDeadPixelFixerSettings.txt");
         }
 
         private void SaveSettings()
@@ -427,12 +422,10 @@ namespace ScreenDeadPixelFixer
                     _zoneY.ToString(),
                     _zoneWidth.ToString(),
                     _zoneHeight.ToString(),
-                    _offsetX.ToString(),
-                    _offsetY.ToString(),
                     _engine.IsRunning.ToString(),
                     (ChkStartup.IsChecked == true).ToString()
                 };
-                System.IO.File.WriteAllLines(path, lines);
+                File.WriteAllLines(path, lines);
             }
             catch { }
         }
@@ -442,23 +435,30 @@ namespace ScreenDeadPixelFixer
             try
             {
                 string path = GetConfigPath();
-                if (System.IO.File.Exists(path))
+                if (File.Exists(path))
                 {
-                    string[] lines = System.IO.File.ReadAllLines(path);
-                    if (lines.Length >= 8)
+                    string[] lines = File.ReadAllLines(path);
+                    if (lines.Length >= 6)
                     {
                         _zoneX = int.Parse(lines[0]);
                         _zoneY = int.Parse(lines[1]);
                         _zoneWidth = int.Parse(lines[2]);
                         _zoneHeight = int.Parse(lines[3]);
-                        _offsetX = int.Parse(lines[4]);
-                        _offsetY = int.Parse(lines[5]);
                         
                         bool autoRunEngine = false;
-                        bool.TryParse(lines[6], out autoRunEngine);
-                        
                         bool startupWin = true;
-                        bool.TryParse(lines[7], out startupWin);
+
+                        if (lines.Length >= 8)
+                        {
+                            bool.TryParse(lines[6], out autoRunEngine);
+                            bool.TryParse(lines[7], out startupWin);
+                        }
+                        else
+                        {
+                            bool.TryParse(lines[4], out autoRunEngine);
+                            bool.TryParse(lines[5], out startupWin);
+                        }
+                        
                         ChkStartup.IsChecked = startupWin;
 
                         ApplySettings();
