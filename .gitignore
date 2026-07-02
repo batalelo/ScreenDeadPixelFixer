@@ -1,0 +1,11 @@
+# Compiled binaries
+*.exe
+*.pdb
+
+# Local settings / dynamic text files
+*Settings.txt
+
+# Common IDE/compiler folders
+.vs/
+bin/
+obj/
