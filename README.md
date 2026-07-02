@@ -34,6 +34,12 @@ It allows you to define a custom rectangular **"Dead Zone"** on your monitor. Wh
 
 ## 🛠️ File Structure & Architecture
 
+> [!TIP]
+> **🚀 Quick Start (Fastest Solution):**
+> You can download the pre-compiled, ready-to-run executable directly from the **[Latest Release (v1.0.0)](https://github.com/batalelo/ScreenDeadPixelFixer/releases/tag/v1.0.0)** and start using it instantly.
+> 
+> *Otherwise, if you want to build it yourself, please follow the codebase structure below.*
+
 The codebase is written in pure C# (WPF) without XAML files to keep the build process incredibly simple, modular, and transparent.
 
 * **[App.cs](file:///d:/ScreenDeadPixelFixer/App.cs)**: The application entry point that initializes the WPF lifecycle and handles single-instance execution.
