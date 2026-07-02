@@ -1,104 +1,127 @@
-# Screen Dead Pixel Fixer
+# Screen Dead Pixel Fixer (Stuck & Broken Screen Pixel Workaround)
 
-Screen Dead Pixel Fixer is an ultra-lightweight, low-overhead WPF utility that helps users with dead or broken screen pixels. It allows defining a rectangular "Dead Zone". When the mouse cursor enters this zone, a circular magnifying "Bubble" overlay pops up next to the cursor, displaying a real-time, click-through screen capture of the content hidden under the dead zone.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Platform: Windows](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)]()
+[![Developed by: TakeYourSite](https://img.shields.io/badge/Developed%20by-TakeYourSite.com-orange.svg)](https://takeyoursite.com)
 
-## Key Features
+> **Idea & Development:** Developed and designed by [TakeYourSite.com](https://takeyoursite.com)
 
-- **Ultra-lightweight File Size**: The compiled executable is only **~27 KB**!
-- **Zero-dependency Portability**: Targets `.NET Framework 4.8` (built-in natively on Windows 10 & 11). Requires absolutely no runtimes or software installations.
-- **Interactive Region Selection**: Click the `SELECT DEAD ZONE ON SCREEN` button to dim the screen and select the exact dead pixels area using your mouse.
-- **Dynamic Cursor Rendering**: The overlay captures and draws the actual Windows mouse cursor in real-time, matching its style and correct hotspot position.
-- **Ultra-Minimal UI Dashboard**: Clean, modern, borderless layout with custom close (`X`) and minimize (`_`) controls.
-- **Pre-activated Windows Auto-Start**: Pre-registered to launch automatically with Windows.
-- **Developed by TakeYourSite.com**: Clicking the footer link opens the website in your default browser.
+**Screen Dead Pixel Fixer** is an ultra-lightweight, zero-dependency Windows desktop utility designed to bypass the issue of dead, stuck, or broken screen pixels. Unlike traditional pixel repair tools that flash bright colors (which rarely work for physically dead pixels), this utility provides a smart, real-time visual workaround.
+
+It allows you to define a custom rectangular **"Dead Zone"** on your monitor. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically next to the cursor, rendering a real-time, click-through magnification of the content blocked by the dead pixels.
 
 ---
 
-## Running the Application Automatically
+## 🌟 Key Features & Capabilities
 
-To build and run the application instantly:
-
-1. Double-click the **[run_screendeadpixelfixer.bat](file:///d:/windows_bad_screen_app/run_screendeadpixelfixer.bat)** file.
-2. The script will automatically compile the code using the built-in Windows C# compiler (`csc.exe`) if the executable is missing, and launch the application.
+* **Smart Visual Workaround**: Instantly see text, buttons, and UI elements hidden behind dead or black screen regions.
+* **Ultra-Lightweight Executable**: The compiled binary size is only **~27 KB** with an extremely low CPU and RAM overhead.
+* **Zero Runtime Dependencies**: Targets `.NET Framework 4.8` (pre-installed natively on Windows 10 & 11). Run it instantly without installing any runtimes, libraries, or setups.
+* **Interactive Screen Selection**: Click a single button to dim the screen and drag your mouse to select the exact region of the dead pixels.
+* **Dynamic Cursor Rendering**: The magnifying bubble captures and draws the real Windows mouse cursor in real-time, matching its style (pointer, hand, text select) and hotspot location.
+* **Fully Click-Through Overlay**: The magnifying bubble is completely transparent to clicks; you can click, drag, and interact with the windows behind the bubble normally.
+* **Windows Auto-Start**: Easily register the application to launch automatically on Windows startup.
 
 ---
 
-## Open Source Verification & Trust / دليل الأمان والشفافية البرمجية
+## 🛠️ File Structure & Architecture
 
-To prove to your users that this application is 100% safe, open-source, and free of spyware or malware, you can follow these industry-standard trust verification methods:
+The codebase is written in pure C# (WPF) without XAML files to keep the build process incredibly simple, modular, and transparent.
 
-### 1. Cloud-Based CI/CD Builds (GitHub Actions)
-Do not distribute binaries compiled on your local machine. Set up a GitHub Action to automatically compile the binary on GitHub's secure servers upon code changes. This guarantees that the executable downloaded from the "Releases" section matches the public repository source code exactly.
+* **[App.cs](file:///d:/ScreenDeadPixelFixer/App.cs)**: The application entry point that initializes the WPF lifecycle and handles single-instance execution.
+* **[MainWindow.cs](file:///d:/ScreenDeadPixelFixer/MainWindow.cs)**: The main dashboard UI. Designed with a clean, borderless, dark-themed control panel.
+* **[SelectionWindow.cs](file:///d:/ScreenDeadPixelFixer/SelectionWindow.cs)**: An interactive, full-screen canvas that lets users visually drag-select their dead pixel zone.
+* **[OverlayWindow.cs](file:///d:/ScreenDeadPixelFixer/OverlayWindow.cs)**: The click-through circular magnifying window that displays the captured screen content.
+* **[ScreenDeadPixelFixerEngine.cs](file:///d:/ScreenDeadPixelFixer/ScreenDeadPixelFixerEngine.cs)**: The core engine that polls the mouse position, captures the screen under the dead zone, and triggers updates.
+* **[NativeMethods.cs](file:///d:/ScreenDeadPixelFixer/NativeMethods.cs)**: Native Win32 API bindings (P/Invokes) used to achieve click-through functionality, mouse tracking, and desktop capture.
 
-### 2. Digital Fingerprinting (SHA-256 Checksum)
-Publish the SHA-256 cryptographic hash of the compiled `ScreenDeadPixelFixer.exe`. Users can verify the download integrity by running this command in PowerShell:
+---
+
+## 💻 How to Compile and Run Locally
+
+You do not need an IDE like Visual Studio to compile this project. You can build it in 1 second using the built-in Windows C# compiler:
+
+### Option 1: Automatic Batch Script
+Simply double-click the **[run_screendeadpixelfixer.bat](file:///d:/ScreenDeadPixelFixer/run_screendeadpixelfixer.bat)** file. It automatically finds the Windows C# compiler (`csc.exe`), compiles the executable, and runs it.
+
+### Option 2: Manual Command Line Compilation
+Open Command Prompt (CMD) or PowerShell in the project directory and run:
+```cmd
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:ScreenDeadPixelFixer.exe /win32icon:AppIcon.ico App.cs MainWindow.cs SelectionWindow.cs OverlayWindow.cs ScreenDeadPixelFixerEngine.cs NativeMethods.cs
+```
+
+---
+
+## 🚀 Automated Builds via GitHub Actions (CI/CD)
+
+To guarantee software integrity and build transparency for your users, you can compile the executable directly on GitHub's secure servers using **GitHub Actions**. This ensures that the downloaded binary exactly matches the open-source repository code.
+
+### Step-by-Step Setup:
+
+1. Create a directory structure in your repository: `.github/workflows/`
+2. Create a new file named `build.yml` inside that directory.
+3. Paste the following configuration into the file:
+
+```yaml
+name: Build and Release Executable
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Compile Application
+      run: |
+        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:ScreenDeadPixelFixer.exe /win32icon:AppIcon.ico App.cs MainWindow.cs SelectionWindow.cs OverlayWindow.cs ScreenDeadPixelFixerEngine.cs NativeMethods.cs
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ScreenDeadPixelFixer
+        path: ScreenDeadPixelFixer.exe
+```
+
+Whenever you push a change to the `main` branch, GitHub will automatically compile the binary and upload it as a downloadable workflow artifact.
+
+---
+
+## 🛡️ Security, Transparency & Trust Verification
+
+Since this application performs low-level actions like desktop screen capture and startup registration, users might be cautious. We provide multiple ways to verify security:
+
+1. **Digital Fingerprinting (SHA-256 Checksum)**:
+   Verify the downloaded executable's integrity by running this command in Windows PowerShell:
+   ```powershell
+   Get-FileHash ScreenDeadPixelFixer.exe -Algorithm SHA256
+   ```
+2. **Native Decompilation**:
+   Because this is a standard .NET executable, users can open `ScreenDeadPixelFixer.exe` using decompilers like **dnSpy** or **ILSpy** to read the exact C# code running on their machines.
+3. **Local Compilation**:
+   Anyone can download the raw `.cs` files and compile them locally in seconds using `csc.exe`, guaranteeing no malicious code is introduced in pre-built releases.
+
+---
+
+## 🔗 Connection & Deployment
+
+To link your local repository and push this project to GitHub for the first time:
+
 ```powershell
-Get-FileHash ScreenDeadPixelFixer.exe -Algorithm SHA256
-```
-Compare the output string to your published hash to confirm the file has not been altered.
-
-### 3. Native Decompilation Audits (dnSpy / ILSpy)
-Since .NET binaries compile to Intermediate Language (IL), users can drag-and-drop `ScreenDeadPixelFixer.exe` into decompilers like **dnSpy** or **ILSpy**. This will decompile the binary back into C# source code, allowing any user to verify that the executable running on their machine is identical to the open-source code.
-
-### 4. Reproducible Builds (Local Compilation)
-Because the codebase is written in clean, dependency-free C#, users do not need to download a pre-built binary. They can download the raw `.cs` files and compile the executable themselves in 1 second using the built-in Windows C# compiler by running:
-```bash
-run_screendeadpixelfixer.bat
+git remote add origin https://github.com/batalelo/ScreenDeadPixelFixer.git
+git branch -M main
+git push -u origin main
 ```
 
-### 5. VirusTotal Scan Reports
-Upload the compiled `ScreenDeadPixelFixer.exe` to [VirusTotal](https://www.virustotal.com/) (which scans it with 70+ antiviruses) and share the public permalink of the clean scan results with your users.
-
 ---
 
-## File Structure
-
-- `ScreenDeadPixelFixer.exe`: The pre-compiled ultra-lightweight binary (27 KB) with the black circle icon.
-- `run_screendeadpixelfixer.bat`: Script to compile (if needed) and run the application.
-- `App.cs`: Entry point for WPF in pure C#.
-- `MainWindow.cs`: Control Dashboard UI implemented entirely in C#.
-- `OverlayWindow.cs`: Click-through circular overlay implemented entirely in C#.
-- `SelectionWindow.cs`: Transparent full-screen region selector in pure C#.
-- `NativeMethods.cs`: Win32 integration P/Invokes.
-- `ScreenDeadPixelFixerEngine.cs`: Core background polling and capture loop.
-
----
-
-## Version Control (Git) / حفظ التعديلات باستخدام Git
-
-To save your changes to Git after making any modifications to the files, follow these steps:
-
-1. **Check Modified Files**:
-   ```powershell
-   git status
-   ```
-2. **Stage Your Changes**:
-   To stage all modified files for committing:
-   ```powershell
-   git add .
-   ```
-3. **Commit the Changes**:
-   Save the staged changes to the repository history with a descriptive commit message:
-   ```powershell
-   git commit -m "your description of changes"
-   ```
-
----
-
-لحفظ تعديلاتك على Git بعد إجراء أي تعديل على الملفات، اتبع الخطوات التالية:
-
-1. **التحقق من الملفات المعدلة**:
-   ```powershell
-   git status
-   ```
-2. **تجهيز الملفات للحفظ (Staging)**:
-   لتجهيز جميع الملفات المعدلة للحفظ:
-   ```powershell
-   git add .
-   ```
-3. **حفظ التغييرات (Commit)**:
-   حفظ التعديلات المجهزة في سجل Git مع كتابة وصف مختصر للتعديل:
-   ```powershell
-   git commit -m "وصف التعديل الخاص بك"
-   ```
-
+*Project idea, design, and code developed by [TakeYourSite.com](https://takeyoursite.com).*

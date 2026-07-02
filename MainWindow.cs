@@ -20,11 +20,17 @@ namespace ScreenDeadPixelFixer
         private int _zoneWidth = 150;
         private int _zoneHeight = 150;
         
+        private bool _isStartingInBackground = false;
+        private bool _isInitializing = true;
+        private System.Threading.EventWaitHandle _singleInstanceEvent;
+
         private Button BtnToggle;
         private CheckBox ChkStartup;
 
-        public MainWindow()
+        public MainWindow(bool isStartingInBackground, System.Threading.EventWaitHandle singleInstanceEvent)
         {
+            _isStartingInBackground = isStartingInBackground;
+            _singleInstanceEvent = singleInstanceEvent;
             // Set Window Styles to borderless with custom rounded corners
             Title = "Screen Dead Pixel Fixer";
             Height = 210;
@@ -243,6 +249,39 @@ namespace ScreenDeadPixelFixer
 
             // Load saved settings
             LoadSettings();
+
+            // Start background activation listener
+            if (_singleInstanceEvent != null)
+            {
+                var waitThread = new System.Threading.Thread(() =>
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            if (_singleInstanceEvent.WaitOne())
+                            {
+                                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                                {
+                                    ShowAndActivate();
+                                }));
+                            }
+                        }
+                        catch (System.Threading.ThreadAbortException)
+                        {
+                            break;
+                        }
+                        catch
+                        {
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                    }
+                });
+                waitThread.IsBackground = true;
+                waitThread.Start();
+            }
+
+            _isInitializing = false;
         }
 
         private void SetupTrayIcon()
@@ -252,12 +291,33 @@ namespace ScreenDeadPixelFixer
                 _notifyIcon = new System.Windows.Forms.NotifyIcon();
                 _notifyIcon.Text = "Screen Dead Pixel Fixer";
                 
-                string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                using (System.Drawing.Icon sysIcon = System.Drawing.Icon.ExtractAssociatedIcon(exePath))
+                System.Drawing.Icon appIcon = null;
+                try
                 {
-                    _notifyIcon.Icon = sysIcon;
+                    string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    appIcon = System.Drawing.Icon.ExtractAssociatedIcon(exePath);
                 }
-                
+                catch { }
+
+                if (appIcon == null)
+                {
+                    try
+                    {
+                        string iconPath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "icon.ico");
+                        if (System.IO.File.Exists(iconPath))
+                        {
+                            appIcon = new System.Drawing.Icon(iconPath);
+                        }
+                    }
+                    catch { }
+                }
+
+                if (appIcon == null)
+                {
+                    appIcon = System.Drawing.SystemIcons.Application;
+                }
+
+                _notifyIcon.Icon = appIcon;
                 _notifyIcon.Visible = true;
                 
                 // Double-click tray icon to restore the window
@@ -323,6 +383,10 @@ namespace ScreenDeadPixelFixer
                 _notifyIcon.Visible = false;
                 _notifyIcon.Dispose();
             }
+            if (_singleInstanceEvent != null)
+            {
+                try { _singleInstanceEvent.Close(); } catch { }
+            }
             Application.Current.Shutdown();
         }
 
@@ -348,8 +412,20 @@ namespace ScreenDeadPixelFixer
                     BtnToggle.Content = "STOP ENGINE";
                     BtnToggle.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4C60"));
                     
-                    // Minimize window automatically when engine starts
-                    this.WindowState = WindowState.Minimized;
+                    // Hide window automatically when engine starts (only if not initial load)
+                    if (!_isInitializing)
+                    {
+                        this.Hide();
+                        if (_notifyIcon != null)
+                        {
+                            _notifyIcon.ShowBalloonTip(
+                                3000, 
+                                "Screen Dead Pixel Fixer", 
+                                "The engine is now running in the background. Double-click the tray icon to open the dashboard.", 
+                                System.Windows.Forms.ToolTipIcon.Info
+                            );
+                        }
+                    }
                 }
             }
         }
@@ -485,7 +561,7 @@ namespace ScreenDeadPixelFixer
                         if (enable)
                         {
                             string appPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-                            key.SetValue("ScreenDeadPixelFixer", "\"" + appPath + "\"");
+                            key.SetValue("ScreenDeadPixelFixer", "\"" + appPath + "\" --background");
                         }
                         else
                         {
