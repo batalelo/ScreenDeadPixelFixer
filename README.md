@@ -6,6 +6,12 @@
 
 > **Idea & Development:** Developed and designed by [TakeYourSite.com](https://takeyoursite.com)
 
+> [!TIP]
+> **🚀 Quick Start (Fastest Solution):**
+> You can download the pre-compiled, ready-to-run executable directly from the **[Latest Release (v1.0.0)](https://github.com/batalelo/ScreenDeadPixelFixer/releases/tag/v1.0.0)** and start using it instantly.
+> 
+> *Otherwise, if you want to build it yourself, please follow the compilation instructions detailed below.*
+
 **Screen Dead Pixel Fixer** is an ultra-lightweight, zero-dependency Windows desktop utility designed to bypass the issue of dead, stuck, or broken screen pixels. Unlike traditional pixel repair tools that flash bright colors (which rarely work for physically dead pixels), this utility provides a smart, real-time visual workaround.
 
 It allows you to define a custom rectangular **"Dead Zone"** on your monitor. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically next to the cursor, rendering a real-time, click-through magnification of the content blocked by the dead pixels.
