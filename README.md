@@ -110,18 +110,4 @@ Since this application performs low-level actions like desktop screen capture an
 3. **Local Compilation**:
    Anyone can download the raw `.cs` files and compile them locally in seconds using `csc.exe`, guaranteeing no malicious code is introduced in pre-built releases.
 
----
-
-## 🔗 Connection & Deployment
-
-To link your local repository and push this project to GitHub for the first time:
-
-```powershell
-git remote add origin https://github.com/batalelo/ScreenDeadPixelFixer.git
-git branch -M main
-git push -u origin main
-```
-
----
-
 *Project idea, design, and code developed by [TakeYourSite.com](https://takeyoursite.com).*
