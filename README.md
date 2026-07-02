@@ -16,6 +16,8 @@
 
 It allows you to define a custom rectangular **"Dead Zone"** on your monitor. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically next to the cursor, rendering a real-time, click-through magnification of the content blocked by the dead pixels.
 
+![Screen Dead Pixel Fixer Workaround Demo](demo.jpg)
+
 ---
 
 ## 🌟 Key Features & Capabilities
