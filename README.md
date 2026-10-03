@@ -1,65 +1,110 @@
+<div align="center">
+
 # Black Circle Fixer
 
-### Smart Workaround for Black Circle (Black Spot) on Laptop Screens
+**Smart, real-time visual workaround for black circles and broken spots on laptop screens.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Platform: Windows](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)]()
-[![Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-9NFVBVQW8DH6-0078D7?logo=windows)](https://apps.microsoft.com/detail/9NFVBVQW8DH6)
+See behind the damage. Click through the blind spot. Don't replace your screen.
+
+A free, open-source Windows utility that creates an interactive, click-through magnifying bubble over damaged screen zones, dead pixels, and LCD ink bleeds.
+
+**~30 KB · single executable · zero dependencies · native .NET 4.8 · no setup required**
+
+<br/>
+
+<a href="https://apps.microsoft.com/detail/9NFVBVQW8DH6">
+<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="220"
+     alt="Get Black Circle Fixer from the Microsoft Store"></a>
+
+<br/>
+
+[**Get it on the Microsoft Store**](https://apps.microsoft.com/detail/9NFVBVQW8DH6) · [**Download .exe (v1.0.0)**](https://github.com/batalelo/ScreenDeadPixelFixer/releases/tag/v1.0.0) · [How it works](#-how-it-works--the-smart-workaround) · [Why pixel fixers fail](#-why-traditional-pixel-fixers-fail) · [FAQ](#-frequently-asked-questions-faq) · [Build from source](#-how-to-compile-and-run-locally)
+
+<br/>
+
+[![Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-Black%20Circle%20Fixer-0078D6?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMyAyMyIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTAgMGgxMXYxMUgweiIvPjxwYXRoIGQ9Ik0xMiAwaDExdjExSDEyeiIvPjxwYXRoIGQ9Ik0wIDEyaDExdjExSDB6Ii8+PHBhdGggZD0iTTEyIDEyaDExdjExSDEyeiIvPjwvc3ZnPg==)](https://apps.microsoft.com/detail/9NFVBVQW8DH6)
+[![build](https://github.com/batalelo/ScreenDeadPixelFixer/actions/workflows/package-msix.yml/badge.svg)](https://github.com/batalelo/ScreenDeadPixelFixer/actions/workflows/package-msix.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![platform](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6)
 [![Developed by: TakeYourSite](https://img.shields.io/badge/Developed%20by-TakeYourSite.com-orange.svg)](https://takeyoursite.com)
 
-> **Idea & Development:** Developed and designed by [TakeYourSite.com](https://takeyoursite.com)
+<br/>
 
-> [!TIP]
-> **🚀 Quick Start (Fastest Solution):**
-> You can download the pre-compiled, ready-to-run executable directly from the **[Latest Release (v1.0.0)](https://github.com/batalelo/ScreenDeadPixelFixer/releases/tag/v1.0.0)** and start using it instantly.
-> 
-> *Otherwise, if you want to build it yourself, please follow the compilation instructions detailed below.*
+<img src="StoreScreenshots/screenshot1.png" width="850"
+     alt="Black Circle Fixer - Real-time Click-Through Magnifying Bubble Workaround on Laptop Screen">
+
+*Live visual workaround: When the mouse cursor enters the black circle damage zone, a floating bubble overlay pops up dynamically next to it, rendering everything behind the circle with full click-through interaction.*
+
+</div>
 
 ---
 
-## 🎯 What is Black Circle Fixer?
+## 🔍 The Problem: What is that Black Circle on your Laptop Screen?
 
-**Black Circle Fixer** is an ultra-lightweight, zero-dependency Windows desktop utility designed as a **smart visual workaround** for laptops and monitors suffering from a **black circle, black spot, LCD bleed, or physical screen bruise**.
+If a dark, round ink blot or black circle suddenly appeared on your laptop screen, you are dealing with **physical liquid crystal display (LCD) damage**:
 
-### The Problem:
-When a laptop screen suffers physical impact or pressure (such as closing the lid on a pen, earbud, or cable), the inner LCD glass substrate cracks, causing liquid crystals to leak into a permanent **black circle** or **black spot**. 
-* **Traditional "Dead Pixel Fixer" tools fail completely:** Flashing RGB colors (like JScreenFix) only works for tiny microscopic stuck pixels—it cannot repair physically cracked LCD panels.
-* **Screen replacement is expensive:** Replacing an entire laptop display panel often costs between **$150 and $300+**.
+* **How it happens:** It commonly occurs when closing the laptop lid on an object (like a pen, earbud, flash drive, or cable), dropping the laptop, or applying too much thumb pressure to the display bezel.
+* **The physical consequence:** The inner glass substrate cracks microscopically. The liquid crystals leak outward in a circular or oval pattern, creating a permanent **black circle or dead zone** that blocks text, dialog boxes, and buttons.
+* **The painful choice:** Repair shops and forums will tell you that the only solution is replacing the entire display panel for **$150 to $300+**—or buying a brand new laptop.
 
-### The Solution:
-**Black Circle Fixer** does not attempt impossible physical glass repairs; instead, it provides a **smart, real-time visual workaround**:
-1. You drag and select the rectangular **"Black Circle / Dead Zone"** covering your damaged screen area.
-2. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically right next to the damaged area.
-3. The bubble displays a real-time, **click-through magnification** of whatever is hidden behind the black circle (buttons, dialog boxes, text, taskbar icons).
-4. You can see your live mouse cursor inside the bubble and click, scroll, drag, and interact normally!
+---
 
-![Black Circle Fixer Workaround Demo](demo.jpg)
+## ❌ Why Traditional "Pixel Fixers" Fail Completely
+
+Tools like JScreenFix, flashing RGB videos, or pixel exercisers are designed exclusively for **stuck pixels** (transistors temporarily stuck on a single red, green, or blue subpixel). 
+
+They **CANNOT** fix:
+1. Physical pressure marks or LCD bruises.
+2. Glass cracks with leaking liquid crystals.
+3. Permanent black circles or clusters of dead pixels.
+
+Pushing or massaging the screen (as suggested by amateur tutorials) will almost always **spread the ink leak and make the black circle much larger**!
+
+---
+
+## 💡 How It Works — The Smart Workaround
+
+Instead of impossible software glass repairs or expensive hardware replacements, **Black Circle Fixer** provides an instant, zero-cost **visual workaround**:
+
+<div align="center">
+<img src="StoreScreenshots/screenshot2.png" width="750" alt="Black Circle Fixer Dashboard Interface">
+</div>
+
+1. **One-Click Selection:** Click **SELECT BLACK CIRCLE / DEAD ZONE**, dim the screen, and drag a box around your damaged area.
+2. **Dynamic Bubble Pop-up:** When your mouse cursor moves inside the black circle, a magnifying circular bubble appears immediately beside the damaged area.
+3. **Live Screen Capture:** The bubble displays whatever content is currently hidden behind the black spot in real time at **30 FPS**.
+4. **Full Click-Through Interaction:** The bubble is completely click-through (`WS_EX_TRANSPARENT`). You can click buttons, type text, scroll pages, and select text through the bubble as if the black circle wasn't even there!
+5. **Real-Time Cursor Replication:** The bubble accurately captures and renders your actual Windows cursor style (arrow, pointer hand, I-beam text selector) and hotspot in real time.
+
+<div align="center">
+<img src="demo.jpg" width="600" alt="Black Circle Fixer Live Interaction Demo">
+</div>
+
+---
+
+## ⚖️ Comparison: Your Options
+
+| Feature | Physical Screen Replacement | Pixel Flashing Tools (JScreenFix) | Black Circle Fixer |
+| :--- | :---: | :---: | :---: |
+| **Cost** | **$150 - $300+** | Free | **100% Free & Open Source** |
+| **Works on Black Circles / Leaks?** | Yes (new screen) | ❌ **No (Fails 100%)** | ✅ **Yes (Instant workaround)** |
+| **Installation Time** | Days / Weeks (shop) | Instant | **1 Second (Portable)** |
+| **Risk of Making Damage Worse** | Moderate | ⚠️ High (if massaging) | **Zero (100% Non-invasive)** |
+| **Click & Interact Behind Spot** | Yes | ❌ No | ✅ **Yes (Click-through bubble)** |
+| **File Size / Memory Overhead** | N/A | High (browser tab) | **~30 KB / <1% CPU** |
 
 ---
 
 ## 🌟 Key Features & Capabilities
 
-* **Smart Visual Workaround**: Instantly see text, buttons, and UI elements hidden behind black circles or damaged screen regions without replacing the screen.
-* **Ultra-Lightweight Executable**: The compiled binary size is only **~29 KB** with virtually zero CPU and RAM overhead.
-* **Zero Runtime Dependencies**: Built with native C# targeting `.NET Framework 4.8` (pre-installed natively on Windows 10 & 11). Run it instantly without installing any runtimes or setups.
-* **Interactive Screen Selection**: Click a single button to dim the screen and drag your mouse to select the exact boundary of your black circle or dead zone.
-* **Live Click-Through Overlay**: The magnifying bubble is completely transparent to Windows clicks (`WS_EX_TRANSPARENT`), allowing you to click, drag, and interact with the windows behind the bubble normally.
-* **Dynamic Cursor Rendering**: Accurately tracks and draws the real Windows mouse cursor in real-time inside the magnifying bubble, matching its current style (pointer, hand, text select) and hotspot location.
+* **Instant Visual Workaround**: Read menus, dialogs, and taskbar icons hidden behind screen damage.
+* **Ultra-Lightweight Executable**: The binary is only **~30 KB** with less than 1% CPU utilization.
+* **Zero Runtime Dependencies**: Built with native C# targeting `.NET Framework 4.8` (pre-installed natively on Windows 10 & 11). Run it instantly without installing any runtimes or frameworks.
+* **One-Click Drag Selection**: Dim the screen and drag to select the exact boundary of your black circle or dead zone.
+* **True Click-Through Overlay**: Passes all mouse clicks, drags, and scrolls directly to the windows behind it.
+* **Dynamic Cursor Rendering**: Draws the real Windows cursor inside the bubble matching its exact shape and hotspot.
 * **Windows Auto-Start**: Easily register the application to launch automatically with Windows on startup.
-* **System Tray Minimization**: Runs silently in the background tray with instant activation.
-
----
-
-## 🛠️ File Structure & Architecture
-
-The codebase is written in pure C# (WPF) without XAML files to keep the build process incredibly simple, modular, and transparent.
-
-* **[App.cs](file:///d:/ScreenDeadPixelFixer/App.cs)**: The application entry point that initializes the WPF lifecycle and handles single-instance execution.
-* **[MainWindow.cs](file:///d:/ScreenDeadPixelFixer/MainWindow.cs)**: The main dashboard UI. Designed with a clean, borderless, dark-themed control panel.
-* **[SelectionWindow.cs](file:///d:/ScreenDeadPixelFixer/SelectionWindow.cs)**: An interactive, full-screen canvas that lets users visually drag-select their black circle / dead zone.
-* **[OverlayWindow.cs](file:///d:/ScreenDeadPixelFixer/OverlayWindow.cs)**: The click-through circular magnifying window that displays the captured screen content.
-* **[BlackCircleFixerEngine.cs](file:///d:/ScreenDeadPixelFixer/BlackCircleFixerEngine.cs)**: The core engine that polls the mouse position, captures the screen under the dead zone, and triggers real-time updates.
-* **[NativeMethods.cs](file:///d:/ScreenDeadPixelFixer/NativeMethods.cs)**: Native Win32 API bindings (P/Invokes) used to achieve click-through functionality, mouse tracking, and desktop capture.
+* **System Tray Minimization**: Runs silently in the background tray with double-click quick restore.
 
 ---
 
@@ -82,7 +127,9 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:Blac
 
 This application is fully structured and configured for seamless distribution through the **Microsoft Store (Partner Center)** using modern **MSIX Desktop Bridge**.
 
-* **Ultra-Lightweight**: Packaged size is only **~80 KB** (no bundled runtimes needed).
+* **Store Listing:** [https://apps.microsoft.com/detail/9NFVBVQW8DH6](https://apps.microsoft.com/detail/9NFVBVQW8DH6)
+* **Store ID:** `9NFVBVQW8DH6`
+* **Ultra-Lightweight Package**: MSIX package size is only **~80 KB** (no bundled runtimes needed).
 * **Automatic Cloud Builds**: GitHub Actions compiles and packages the `.msix` container automatically on every push.
 * **Store Guide**: For complete step-by-step submission instructions, see **[STORE_GUIDE.md](file:///d:/ScreenDeadPixelFixer/STORE_GUIDE.md)**.
 
@@ -100,10 +147,10 @@ The repository includes a ready-to-run GitHub Actions workflow in **`.github/wor
 
 ## 🛡️ Security, Transparency & Trust Verification
 
-Since this application performs low-level actions like desktop screen capture and startup registration, users might be cautious. We provide multiple ways to verify security:
+Since this application performs desktop screen capture and startup registration, security and trust are essential:
 
 1. **Digital Fingerprinting (SHA-256 Checksum)**:
-   Verify the downloaded executable's integrity by running this command in Windows PowerShell:
+   Verify the downloaded executable's integrity in Windows PowerShell:
    ```powershell
    Get-FileHash BlackCircleFixer.exe -Algorithm SHA256
    ```
@@ -120,7 +167,10 @@ Since this application performs low-level actions like desktop screen capture an
 No software can physically repair broken glass or reverse leaked liquid crystals. However, **BlackCircleFixer** solves the daily usability problem by projecting the blocked content onto a floating, magnifying bubble whenever your cursor is in the dead zone, allowing you to read text, click buttons, and use your laptop without spending hundreds on a new screen.
 
 ### Will this slow down my laptop?
-No. The application is written in lightweight native C# and consumes less than 1% CPU and ~40 MB of RAM only when actively magnifying. When your cursor is outside the dead zone, it sits idle.
+No. The application is written in lightweight native C# and consumes less than 1% CPU and ~40 MB of RAM only when actively magnifying. When your cursor is outside the dead zone, it sits completely idle.
+
+### Does it work on external monitors?
+Yes. It supports primary and secondary monitors running Windows 10 or Windows 11.
 
 ---
 
