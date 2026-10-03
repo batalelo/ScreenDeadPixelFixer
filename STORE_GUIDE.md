@@ -17,22 +17,27 @@
 
 ---
 
-## ✏️ الخطوة 2: تحديث ملف `Package/AppxManifest.xml`
+## ✏️ الخطوة 2: بيانات الهوية في `Package/AppxManifest.xml` (تم التحديث بالفعل ✅)
 
-افتح الملف `Package/AppxManifest.xml` وضع القيم الثلاث في السطور التالية:
+تم تحديث وتثبيت بيانات هويتك الرسمية في الملف:
 
 ```xml
   <Identity 
-    Name="ضع_Package_Identity_Name_هنا" 
-    Publisher="ضع_Package_Identity_Publisher_هنا" 
+    Name="AbdallahElbatal.BlackCircleFixer" 
+    Publisher="CN=DD2DEF7F-5AC6-4D71-B40C-C3E9109EEE29" 
     Version="1.0.0.0" 
     ProcessorArchitecture="neutral" />
 
   <Properties>
     <DisplayName>Black Circle Fixer</DisplayName>
-    <PublisherDisplayName>ضع_PublisherDisplayName_هنا</PublisherDisplayName>
-    ...
+    <PublisherDisplayName>Abdallah Elbatal</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>Smart Workaround for Black Circle (Black Spot) on Laptop Screens</Description>
+  </Properties>
 ```
+
+* **رابط التطبيق المباشر على المتجر:** [https://apps.microsoft.com/detail/9NFVBVQW8DH6](https://apps.microsoft.com/detail/9NFVBVQW8DH6)
+* **معرف المتجر (Store ID):** `9NFVBVQW8DH6`
 
 ---
 

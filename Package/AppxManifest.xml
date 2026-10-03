@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap rescap desktop">
 
   <Identity 
-    Name="TakeYourSite.BlackCircleFixer" 
-    Publisher="CN=YOUR-PUBLISHER-ID-FROM-PARTNER-CENTER" 
+    Name="AbdallahElbatal.BlackCircleFixer" 
+    Publisher="CN=DD2DEF7F-5AC6-4D71-B40C-C3E9109EEE29" 
     Version="1.0.0.0" 
     ProcessorArchitecture="neutral" />
 
   <Properties>
     <DisplayName>Black Circle Fixer</DisplayName>
-    <PublisherDisplayName>TakeYourSite</PublisherDisplayName>
+    <PublisherDisplayName>Abdallah Elbatal</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>Smart Workaround for Black Circle (Black Spot) on Laptop Screens</Description>
   </Properties>

@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)]()
+[![Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-9NFVBVQW8DH6-0078D7?logo=windows)](https://apps.microsoft.com/detail/9NFVBVQW8DH6)
 [![Developed by: TakeYourSite](https://img.shields.io/badge/Developed%20by-TakeYourSite.com-orange.svg)](https://takeyoursite.com)
 
 > **Idea & Development:** Developed and designed by [TakeYourSite.com](https://takeyoursite.com)
