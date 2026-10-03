@@ -124,4 +124,13 @@ No. The application is written in lightweight native C# and consumes less than 1
 
 ---
 
+## 🔒 Privacy Policy
+
+**Black Circle Fixer** is a 100% local, offline desktop utility:
+* **No Data Collection**: It does not collect, record, track, or transmit any personal information, telemetry, analytics, or user identifiers.
+* **Local Screen Processing Only**: Desktop screen capture occurs exclusively in volatile local memory (RAM) in real-time to render the magnification bubble. No frames, keystrokes, or images are ever stored on disk or sent over the internet.
+* **No Network Connections**: The application operates completely offline with zero outgoing or incoming network requests.
+
+---
+
 *Project idea, design, and code developed by [TakeYourSite.com](https://takeyoursite.com).*
