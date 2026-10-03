@@ -1,4 +1,6 @@
-# Screen Dead Pixel Fixer (Stuck & Broken Screen Pixel Workaround)
+# Black Circle Fixer
+
+### Smart Workaround for Black Circle (Black Spot) on Laptop Screens
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)]()
@@ -12,41 +14,50 @@
 > 
 > *Otherwise, if you want to build it yourself, please follow the compilation instructions detailed below.*
 
-**Screen Dead Pixel Fixer** is an ultra-lightweight, zero-dependency Windows desktop utility designed to bypass the issue of dead, stuck, or broken screen pixels. Unlike traditional pixel repair tools that flash bright colors (which rarely work for physically dead pixels), this utility provides a smart, real-time visual workaround.
+---
 
-It allows you to define a custom rectangular **"Dead Zone"** on your monitor. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically next to the cursor, rendering a real-time, click-through magnification of the content blocked by the dead pixels.
+## 🎯 What is Black Circle Fixer?
 
-![Screen Dead Pixel Fixer Workaround Demo](demo.jpg)
+**Black Circle Fixer** is an ultra-lightweight, zero-dependency Windows desktop utility designed as a **smart visual workaround** for laptops and monitors suffering from a **black circle, black spot, LCD bleed, or physical screen bruise**.
+
+### The Problem:
+When a laptop screen suffers physical impact or pressure (such as closing the lid on a pen, earbud, or cable), the inner LCD glass substrate cracks, causing liquid crystals to leak into a permanent **black circle** or **black spot**. 
+* **Traditional "Dead Pixel Fixer" tools fail completely:** Flashing RGB colors (like JScreenFix) only works for tiny microscopic stuck pixels—it cannot repair physically cracked LCD panels.
+* **Screen replacement is expensive:** Replacing an entire laptop display panel often costs between **$150 and $300+**.
+
+### The Solution:
+**Black Circle Fixer** does not attempt impossible physical glass repairs; instead, it provides a **smart, real-time visual workaround**:
+1. You drag and select the rectangular **"Black Circle / Dead Zone"** covering your damaged screen area.
+2. Whenever your mouse cursor enters this zone, a circular magnifying **"Bubble Overlay"** pops up dynamically right next to the damaged area.
+3. The bubble displays a real-time, **click-through magnification** of whatever is hidden behind the black circle (buttons, dialog boxes, text, taskbar icons).
+4. You can see your live mouse cursor inside the bubble and click, scroll, drag, and interact normally!
+
+![Black Circle Fixer Workaround Demo](demo.jpg)
 
 ---
 
 ## 🌟 Key Features & Capabilities
 
-* **Smart Visual Workaround**: Instantly see text, buttons, and UI elements hidden behind dead or black screen regions.
-* **Ultra-Lightweight Executable**: The compiled binary size is only **~27 KB** with an extremely low CPU and RAM overhead.
-* **Zero Runtime Dependencies**: Targets `.NET Framework 4.8` (pre-installed natively on Windows 10 & 11). Run it instantly without installing any runtimes, libraries, or setups.
-* **Interactive Screen Selection**: Click a single button to dim the screen and drag your mouse to select the exact region of the dead pixels.
-* **Dynamic Cursor Rendering**: The magnifying bubble captures and draws the real Windows mouse cursor in real-time, matching its style (pointer, hand, text select) and hotspot location.
-* **Fully Click-Through Overlay**: The magnifying bubble is completely transparent to clicks; you can click, drag, and interact with the windows behind the bubble normally.
-* **Windows Auto-Start**: Easily register the application to launch automatically on Windows startup.
+* **Smart Visual Workaround**: Instantly see text, buttons, and UI elements hidden behind black circles or damaged screen regions without replacing the screen.
+* **Ultra-Lightweight Executable**: The compiled binary size is only **~29 KB** with virtually zero CPU and RAM overhead.
+* **Zero Runtime Dependencies**: Built with native C# targeting `.NET Framework 4.8` (pre-installed natively on Windows 10 & 11). Run it instantly without installing any runtimes or setups.
+* **Interactive Screen Selection**: Click a single button to dim the screen and drag your mouse to select the exact boundary of your black circle or dead zone.
+* **Live Click-Through Overlay**: The magnifying bubble is completely transparent to Windows clicks (`WS_EX_TRANSPARENT`), allowing you to click, drag, and interact with the windows behind the bubble normally.
+* **Dynamic Cursor Rendering**: Accurately tracks and draws the real Windows mouse cursor in real-time inside the magnifying bubble, matching its current style (pointer, hand, text select) and hotspot location.
+* **Windows Auto-Start**: Easily register the application to launch automatically with Windows on startup.
+* **System Tray Minimization**: Runs silently in the background tray with instant activation.
 
 ---
 
 ## 🛠️ File Structure & Architecture
 
-> [!TIP]
-> **🚀 Quick Start (Fastest Solution):**
-> You can download the pre-compiled, ready-to-run executable directly from the **[Latest Release (v1.0.0)](https://github.com/batalelo/ScreenDeadPixelFixer/releases/tag/v1.0.0)** and start using it instantly.
-> 
-> *Otherwise, if you want to build it yourself, please follow the codebase structure below.*
-
 The codebase is written in pure C# (WPF) without XAML files to keep the build process incredibly simple, modular, and transparent.
 
 * **[App.cs](file:///d:/ScreenDeadPixelFixer/App.cs)**: The application entry point that initializes the WPF lifecycle and handles single-instance execution.
 * **[MainWindow.cs](file:///d:/ScreenDeadPixelFixer/MainWindow.cs)**: The main dashboard UI. Designed with a clean, borderless, dark-themed control panel.
-* **[SelectionWindow.cs](file:///d:/ScreenDeadPixelFixer/SelectionWindow.cs)**: An interactive, full-screen canvas that lets users visually drag-select their dead pixel zone.
+* **[SelectionWindow.cs](file:///d:/ScreenDeadPixelFixer/SelectionWindow.cs)**: An interactive, full-screen canvas that lets users visually drag-select their black circle / dead zone.
 * **[OverlayWindow.cs](file:///d:/ScreenDeadPixelFixer/OverlayWindow.cs)**: The click-through circular magnifying window that displays the captured screen content.
-* **[ScreenDeadPixelFixerEngine.cs](file:///d:/ScreenDeadPixelFixer/ScreenDeadPixelFixerEngine.cs)**: The core engine that polls the mouse position, captures the screen under the dead zone, and triggers updates.
+* **[BlackCircleFixerEngine.cs](file:///d:/ScreenDeadPixelFixer/BlackCircleFixerEngine.cs)**: The core engine that polls the mouse position, captures the screen under the dead zone, and triggers real-time updates.
 * **[NativeMethods.cs](file:///d:/ScreenDeadPixelFixer/NativeMethods.cs)**: Native Win32 API bindings (P/Invokes) used to achieve click-through functionality, mouse tracking, and desktop capture.
 
 ---
@@ -56,12 +67,12 @@ The codebase is written in pure C# (WPF) without XAML files to keep the build pr
 You do not need an IDE like Visual Studio to compile this project. You can build it in 1 second using the built-in Windows C# compiler:
 
 ### Option 1: Automatic Batch Script
-Simply double-click the **[run_screendeadpixelfixer.bat](file:///d:/ScreenDeadPixelFixer/run_screendeadpixelfixer.bat)** file. It automatically finds the Windows C# compiler (`csc.exe`), compiles the executable, and runs it.
+Simply double-click the **[run_blackcirclefixer.bat](file:///d:/ScreenDeadPixelFixer/run_blackcirclefixer.bat)** file. It automatically finds the Windows C# compiler (`csc.exe`), compiles the executable, and runs it.
 
 ### Option 2: Manual Command Line Compilation
 Open Command Prompt (CMD) or PowerShell in the project directory and run:
 ```cmd
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:ScreenDeadPixelFixer.exe /win32icon:AppIcon.ico App.cs MainWindow.cs SelectionWindow.cs OverlayWindow.cs ScreenDeadPixelFixerEngine.cs NativeMethods.cs
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:BlackCircleFixer.exe /win32icon:icon.ico /r:System.dll /r:System.Drawing.dll /r:System.Windows.Forms.dll /r:System.Xaml.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\WindowsBase.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationCore.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationFramework.dll /r:System.Core.dll App.cs MainWindow.cs OverlayWindow.cs SelectionWindow.cs NativeMethods.cs BlackCircleFixerEngine.cs
 ```
 
 ---
@@ -70,12 +81,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:Scre
 
 To guarantee software integrity and build transparency for your users, you can compile the executable directly on GitHub's secure servers using **GitHub Actions**. This ensures that the downloaded binary exactly matches the open-source repository code.
 
-### Step-by-Step Setup:
-
-1. Create a directory structure in your repository: `.github/workflows/`
-2. Create a new file named `build.yml` inside that directory.
-3. Paste the following configuration into the file:
-
+### Configuration (`.github/workflows/build.yml`):
 ```yaml
 name: Build and Release Executable
 
@@ -97,16 +103,14 @@ jobs:
 
     - name: Compile Application
       run: |
-        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:ScreenDeadPixelFixer.exe /win32icon:AppIcon.ico App.cs MainWindow.cs SelectionWindow.cs OverlayWindow.cs ScreenDeadPixelFixerEngine.cs NativeMethods.cs
+        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:BlackCircleFixer.exe /win32icon:icon.ico /r:System.dll /r:System.Drawing.dll /r:System.Windows.Forms.dll /r:System.Xaml.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\WindowsBase.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationCore.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationFramework.dll /r:System.Core.dll App.cs MainWindow.cs OverlayWindow.cs SelectionWindow.cs NativeMethods.cs BlackCircleFixerEngine.cs
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ScreenDeadPixelFixer
-        path: ScreenDeadPixelFixer.exe
+        name: BlackCircleFixer
+        path: BlackCircleFixer.exe
 ```
-
-Whenever you push a change to the `main` branch, GitHub will automatically compile the binary and upload it as a downloadable workflow artifact.
 
 ---
 
@@ -117,11 +121,23 @@ Since this application performs low-level actions like desktop screen capture an
 1. **Digital Fingerprinting (SHA-256 Checksum)**:
    Verify the downloaded executable's integrity by running this command in Windows PowerShell:
    ```powershell
-   Get-FileHash ScreenDeadPixelFixer.exe -Algorithm SHA256
+   Get-FileHash BlackCircleFixer.exe -Algorithm SHA256
    ```
 2. **Native Decompilation**:
-   Because this is a standard .NET executable, users can open `ScreenDeadPixelFixer.exe` using decompilers like **dnSpy** or **ILSpy** to read the exact C# code running on their machines.
+   Because this is a standard .NET executable, users can open `BlackCircleFixer.exe` using decompilers like **dnSpy** or **ILSpy** to read the exact C# code running on their machines.
 3. **Local Compilation**:
    Anyone can download the raw `.cs` files and compile them locally in seconds using `csc.exe`, guaranteeing no malicious code is introduced in pre-built releases.
+
+---
+
+## ❓ Frequently Asked Questions (FAQ)
+
+### Can software fix a physical black circle or ink spot on an LCD screen?
+No software can physically repair broken glass or reverse leaked liquid crystals. However, **BlackCircleFixer** solves the daily usability problem by projecting the blocked content onto a floating, magnifying bubble whenever your cursor is in the dead zone, allowing you to read text, click buttons, and use your laptop without spending hundreds on a new screen.
+
+### Will this slow down my laptop?
+No. The application is written in lightweight native C# and consumes less than 1% CPU and ~40 MB of RAM only when actively magnifying. When your cursor is outside the dead zone, it sits idle.
+
+---
 
 *Project idea, design, and code developed by [TakeYourSite.com](https://takeyoursite.com).*

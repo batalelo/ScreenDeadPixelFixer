@@ -8,9 +8,9 @@ using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
-    public class ScreenDeadPixelFixerEngine
+    public class BlackCircleFixerEngine
     {
         private readonly DispatcherTimer _timer;
         private readonly OverlayWindow _overlayWindow;
@@ -27,7 +27,7 @@ namespace ScreenDeadPixelFixer
             get { return _timer.IsEnabled; } 
         }
 
-        public ScreenDeadPixelFixerEngine(MainWindow mainWindow)
+        public BlackCircleFixerEngine(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
             _overlayWindow = new OverlayWindow();

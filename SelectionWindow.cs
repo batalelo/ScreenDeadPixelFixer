@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
     public class SelectionWindow : Window
     {
@@ -30,7 +30,7 @@ namespace ScreenDeadPixelFixer
 
         public SelectionWindow()
         {
-            Title = "Select Dead Zone";
+            Title = "Select Black Circle / Dead Zone";
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             Background = new SolidColorBrush(Color.FromArgb(96, 0, 0, 0));
@@ -56,7 +56,7 @@ namespace ScreenDeadPixelFixer
 
             TextBlock textBlock = new TextBlock
             {
-                Text = "Click and drag to select the Dead Zone. Press ESC to cancel.",
+                Text = "Click and drag to select the Black Circle / Dead Zone. Press ESC to cancel.",
                 Foreground = Brushes.White,
                 FontSize = 16,
                 FontWeight = FontWeights.Bold

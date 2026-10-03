@@ -5,7 +5,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
     public class OverlayWindow : Window
     {
@@ -13,7 +13,7 @@ namespace ScreenDeadPixelFixer
 
         public OverlayWindow()
         {
-            Title = "Screen Dead Pixel Fixer Overlay";
+            Title = "Black Circle Fixer Overlay";
             Height = 200;
             Width = 200;
             WindowStyle = WindowStyle.None;

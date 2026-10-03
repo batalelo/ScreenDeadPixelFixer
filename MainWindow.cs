@@ -6,11 +6,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
     public class MainWindow : Window
     {
-        private readonly ScreenDeadPixelFixerEngine _engine;
+        private readonly BlackCircleFixerEngine _engine;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isShuttingDown = false;
         
@@ -32,7 +32,7 @@ namespace ScreenDeadPixelFixer
             _isStartingInBackground = isStartingInBackground;
             _singleInstanceEvent = singleInstanceEvent;
             // Set Window Styles to borderless with custom rounded corners
-            Title = "Screen Dead Pixel Fixer";
+            Title = "Black Circle Fixer";
             Height = 210;
             Width = 380;
             WindowStyle = WindowStyle.None;
@@ -84,7 +84,7 @@ namespace ScreenDeadPixelFixer
             
             TextBlock titleText = new TextBlock
             {
-                Text = "SCREEN DEAD PIXEL FIXER",
+                Text = "BLACK CIRCLE FIXER",
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00ADB5")),
                 FontWeight = FontWeights.Bold,
                 FontSize = 12,
@@ -153,7 +153,7 @@ namespace ScreenDeadPixelFixer
             // 1. Select Dead Zone Button
             Button btnSelect = new Button
             {
-                Content = "SELECT DEAD ZONE ON SCREEN",
+                Content = "SELECT BLACK CIRCLE / DEAD ZONE",
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00ADB5")),
                 Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#111116")),
                 FontWeight = FontWeights.Bold,
@@ -239,7 +239,7 @@ namespace ScreenDeadPixelFixer
             Content = outerBorder;
 
             // Instantiate Engine
-            _engine = new ScreenDeadPixelFixerEngine(this);
+            _engine = new BlackCircleFixerEngine(this);
 
             // Setup Tray Icon System
             SetupTrayIcon();
@@ -289,7 +289,7 @@ namespace ScreenDeadPixelFixer
             try
             {
                 _notifyIcon = new System.Windows.Forms.NotifyIcon();
-                _notifyIcon.Text = "Screen Dead Pixel Fixer";
+                _notifyIcon.Text = "Black Circle Fixer";
                 
                 System.Drawing.Icon appIcon = null;
                 try
@@ -349,7 +349,7 @@ namespace ScreenDeadPixelFixer
         {
             MessageBoxResult result = MessageBox.Show(
                 "Do you want to keep the engine running in the background?\n\n- Click 'Yes' to run in the background (System Tray).\n- Click 'No' to close the application completely.", 
-                "Screen Dead Pixel Fixer", 
+                "Black Circle Fixer", 
                 MessageBoxButton.YesNoCancel, 
                 MessageBoxImage.Question
             );
@@ -361,7 +361,7 @@ namespace ScreenDeadPixelFixer
                 {
                     _notifyIcon.ShowBalloonTip(
                         3000, 
-                        "Screen Dead Pixel Fixer", 
+                        "Black Circle Fixer", 
                         "The application is still running in the background. Double-click the tray icon to open.", 
                         System.Windows.Forms.ToolTipIcon.Info
                     );
@@ -420,7 +420,7 @@ namespace ScreenDeadPixelFixer
                         {
                             _notifyIcon.ShowBalloonTip(
                                 3000, 
-                                "Screen Dead Pixel Fixer", 
+                                "Black Circle Fixer", 
                                 "The engine is now running in the background. Double-click the tray icon to open the dashboard.", 
                                 System.Windows.Forms.ToolTipIcon.Info
                             );
@@ -484,7 +484,7 @@ namespace ScreenDeadPixelFixer
         private string GetConfigPath()
         {
             string appDir = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(appDir, "ScreenDeadPixelFixerSettings.txt");
+            return Path.Combine(appDir, "BlackCircleFixerSettings.txt");
         }
 
         private void SaveSettings()
@@ -561,11 +561,11 @@ namespace ScreenDeadPixelFixer
                         if (enable)
                         {
                             string appPath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-                            key.SetValue("ScreenDeadPixelFixer", "\"" + appPath + "\" --background");
+                            key.SetValue("BlackCircleFixer", "\"" + appPath + "\" --background");
                         }
                         else
                         {
-                            key.DeleteValue("ScreenDeadPixelFixer", false);
+                            key.DeleteValue("BlackCircleFixer", false);
                         }
                     }
                 }

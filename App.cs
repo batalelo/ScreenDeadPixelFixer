@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Windows;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
     public class App : Application
     {
@@ -23,7 +23,7 @@ namespace ScreenDeadPixelFixer
             }
 
             bool createdNew;
-            _eventWaitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, "ScreenDeadPixelFixer-SingleInstance-Event", out createdNew);
+            _eventWaitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, "BlackCircleFixer-SingleInstance-Event", out createdNew);
 
             if (!createdNew)
             {

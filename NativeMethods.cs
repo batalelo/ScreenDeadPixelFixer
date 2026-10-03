@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace ScreenDeadPixelFixer
+namespace BlackCircleFixer
 {
     internal static class NativeMethods
     {
