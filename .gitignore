@@ -1,6 +1,8 @@
 # Compiled binaries
 *.exe
 *.pdb
+*.msix
+*.appx
 
 # Local settings / dynamic text files
 *Settings.txt

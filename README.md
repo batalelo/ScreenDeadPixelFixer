@@ -77,40 +77,23 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:Blac
 
 ---
 
+## 🛒 Microsoft Store Distribution (MSIX)
+
+This application is fully structured and configured for seamless distribution through the **Microsoft Store (Partner Center)** using modern **MSIX Desktop Bridge**.
+
+* **Ultra-Lightweight**: Packaged size is only **~80 KB** (no bundled runtimes needed).
+* **Automatic Cloud Builds**: GitHub Actions compiles and packages the `.msix` container automatically on every push.
+* **Store Guide**: For complete step-by-step submission instructions, see **[STORE_GUIDE.md](file:///d:/ScreenDeadPixelFixer/STORE_GUIDE.md)**.
+
+---
+
 ## 🚀 Automated Builds via GitHub Actions (CI/CD)
 
-To guarantee software integrity and build transparency for your users, you can compile the executable directly on GitHub's secure servers using **GitHub Actions**. This ensures that the downloaded binary exactly matches the open-source repository code.
-
-### Configuration (`.github/workflows/build.yml`):
-```yaml
-name: Build and Release Executable
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
-
-    - name: Compile Application
-      run: |
-        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /out:BlackCircleFixer.exe /win32icon:icon.ico /r:System.dll /r:System.Drawing.dll /r:System.Windows.Forms.dll /r:System.Xaml.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\WindowsBase.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationCore.dll /r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationFramework.dll /r:System.Core.dll App.cs MainWindow.cs OverlayWindow.cs SelectionWindow.cs NativeMethods.cs BlackCircleFixerEngine.cs
-
-    - name: Upload Build Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: BlackCircleFixer
-        path: BlackCircleFixer.exe
-```
+The repository includes a ready-to-run GitHub Actions workflow in **`.github/workflows/package-msix.yml`**. On every commit, it automatically:
+1. Compiles `BlackCircleFixer.exe`.
+2. Generates all required Store logo assets via `generate_assets.ps1`.
+3. Packages the app into `BlackCircleFixer.msix` using Microsoft's `MakeAppx.exe`.
+4. Uploads both the **Standalone EXE** and **Microsoft Store MSIX** as downloadable artifacts.
 
 ---
 

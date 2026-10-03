@@ -1,0 +1,72 @@
+name: Build & Package Microsoft Store MSIX
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Compile Executable
+      shell: powershell
+      run: |
+        $cscPath = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+        $args = @(
+          "/target:winexe",
+          "/out:BlackCircleFixer.exe",
+          "/win32icon:icon.ico",
+          "/r:System.dll",
+          "/r:System.Drawing.dll",
+          "/r:System.Windows.Forms.dll",
+          "/r:System.Xaml.dll",
+          "/r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\WindowsBase.dll",
+          "/r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationCore.dll",
+          "/r:C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationFramework.dll",
+          "/r:System.Core.dll",
+          "App.cs",
+          "MainWindow.cs",
+          "OverlayWindow.cs",
+          "SelectionWindow.cs",
+          "NativeMethods.cs",
+          "BlackCircleFixerEngine.cs"
+        )
+        & $cscPath $args
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+    - name: Generate Store Assets
+      shell: powershell
+      run: |
+        powershell -ExecutionPolicy Bypass -File .\generate_assets.ps1
+
+    - name: Stage MSIX Package Directory
+      shell: powershell
+      run: |
+        Copy-Item -Path "BlackCircleFixer.exe" -Destination "Package\BlackCircleFixer.exe" -Force
+
+    - name: Build MSIX Package with MakeAppx
+      shell: powershell
+      run: |
+        $makeAppx = (Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\makeappx.exe" | Select-Object -Last 1).FullName
+        Write-Host "Using MakeAppx from: $makeAppx"
+        & $makeAppx pack /d "Package" /p "BlackCircleFixer.msix" /o
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        $size = (Get-Item "BlackCircleFixer.msix").Length / 1KB
+        Write-Host "Built BlackCircleFixer.msix successfully ($([math]::Round($size, 2)) KB)"
+
+    - name: Upload MSIX Package Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: BlackCircleFixer-MSIX
+        path: BlackCircleFixer.msix
+
+    - name: Upload Standalone EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: BlackCircleFixer-EXE
+        path: BlackCircleFixer.exe
