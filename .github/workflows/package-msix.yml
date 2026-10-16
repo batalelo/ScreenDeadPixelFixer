@@ -5,6 +5,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-and-package:
     runs-on: windows-latest
@@ -70,3 +73,19 @@ jobs:
       with:
         name: BlackCircleFixer-EXE
         path: BlackCircleFixer.exe
+
+    - name: Publish GitHub Release v1.0.1
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v1.0.1
+        name: "Black Circle Fixer v1.0.1"
+        body: |
+          ### What's New in v1.0.1:
+          - Automatically launches silently in the background (System Tray) on Windows restart.
+          - Added `uap10:Parameters="--background"` to the Microsoft Store MSIX package manifest.
+          - Updated package version to `1.0.1.0`.
+        files: |
+          BlackCircleFixer.msix
+          BlackCircleFixer.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
